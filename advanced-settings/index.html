@@ -1,0 +1,346 @@
+<hr>
+<p>layout: page<br>title: Advanced Settings「进阶设定」<br>cover: false<br>meta:<br>  header: [title, author, updated]<br>btns:<br>  repo: <a href="https://github.com/xaoxuu/hexo-theme-volantis" target="_blank" rel="noopener">https://github.com/xaoxuu/hexo-theme-volantis</a><br>  bug: <a href="https://github.com/xaoxuu/hexo-theme-volantis/issues/new?assignees=&amp;labels=BUG&amp;template=bug-report.md" target="_blank" rel="noopener">https://github.com/xaoxuu/hexo-theme-volantis/issues/new?assignees=&amp;labels=BUG&amp;template=bug-report.md</a><br>  doubt: <a href="https://github.com/xaoxuu/hexo-theme-volantis/issues/new?labels=疑问&amp;template=question-report.md" target="_blank" rel="noopener">https://github.com/xaoxuu/hexo-theme-volantis/issues/new?labels=疑问&amp;template=question-report.md</a><br>  idea: <a href="https://github.com/xaoxuu/hexo-theme-volantis/issues/new?assignees=&amp;labels=建议&amp;template=feature-request.md" target="_blank" rel="noopener">https://github.com/xaoxuu/hexo-theme-volantis/issues/new?assignees=&amp;labels=建议&amp;template=feature-request.md</a></p>
+<hr>
+<p>建议有一定基础知识的朋友进行尝试。</p>
+<p>{% raw %}</p>
+<details>
+<summary>
+将主题添加为子模块
+</summary>
+{% endraw %}
+
+<pre><code class="sh">git submodule add git@github.com:xaoxuu/hexo-theme-volantis themes/volantis</code></pre>
+<p>{% raw %}</details>{% endraw %}</p>
+<h2 id="为网站提速"><a href="#为网站提速" class="headerlink" title="为网站提速"></a>为网站提速</h2><h3 id="加载速度"><a href="#加载速度" class="headerlink" title="加载速度"></a>加载速度</h3><ul>
+<li>尝试安装 <code>hexo-all-minifier</code> 插件。</li>
+<li>减少不必要的js插件，例如字数统计、动态背景。以Chrome浏览器为例，</li>
+</ul>
+<h4 id="查看拖慢速度的资源"><a href="#查看拖慢速度的资源" class="headerlink" title="查看拖慢速度的资源"></a>查看拖慢速度的资源</h4><ol>
+<li>页面中点击右键，选择「检查」。</li>
+<li>在右边的窗口中「Network」选项卡，并勾选「Disable cache」。</li>
+<li>刷新网页，查看加载速度慢的资源。<br>3.1. 如果是图片，建议使用CDN。<br>3.2. 如果非必须的js插件，建议舍弃。<br>3.3. 如果是必须使用的js插件，建议下载并自己上传至 <code>jsdelivr</code>。</li>
+</ol>
+<h3 id="运行速度"><a href="#运行速度" class="headerlink" title="运行速度"></a>运行速度</h3><ul>
+<li>用手机访问具有动态特效背景（如雪花、粒子等）的网站很快会发烫变卡。如果你希望网站有好的使用体验请尽量不要安装这类插件。</li>
+<li>安装 <a href="https://github.com/JLHwung/hexo-offline" target="_blank" rel="noopener">hexo-offline</a> 插件。</li>
+</ul>
+<h2 id="优化SEO"><a href="#优化SEO" class="headerlink" title="优化SEO"></a>优化SEO</h2><ul>
+<li>文章内不要使用 H1 标题。</li>
+<li>通过死链检测工具检查并删除无法访问的链接。</li>
+<li>安装SEO优化插件：<ul>
+<li><a href="https://github.com/liuzc/hexo-autonofollow" target="_blank" rel="noopener">hexo-autonofollow</a></li>
+<li><a href="https://github.com/ludoviclefevre/hexo-generator-seo-friendly-sitemap" target="_blank" rel="noopener">hexo-generator-seo-friendly-sitemap</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="复选框和Container"><a href="#复选框和Container" class="headerlink" title="复选框和Container"></a>复选框和Container</h2><p>::: info<br>here be info<br>:::</p>
+<p>::: warning<br>here be warning<br>:::</p>
+<p>::: success<br>here be success<br>:::</p>
+<p>::: danger<br>here be danger<br>:::</p>
+<p>如果是其他markdown解析器，需要卸载并安装 <code>hexo-renderer-markdown-it</code> 插件：</p>
+<ol>
+<li><p>卸载默认的 <code>hexo-renderer-marked</code></p>
+<pre><code class="sh">npm uninstall hexo-renderer-marked --save</code></pre>
+</li>
+<li><p>安装 <code>hexo-renderer-markdown-it</code></p>
+<pre><code class="sh">npm install hexo-renderer-markdown-it --save</code></pre>
+</li>
+<li><p>然后安装插件</p>
+<pre><code class="sh">npm install markdown-it-abbr markdown-it-checkbox markdown-it-container markdown-it-deflist markdown-it-emoji markdown-it-footnote markdown-it-imsize markdown-it-ins markdown-it-mark markdown-it-regexp markdown-it-sub markdown-it-sup markdown-it-task-checkbox --save</code></pre>
+</li>
+<li><p>修改配置文件</p>
+<pre><code class="yaml"><span class="attr">markdown:</span>
+ <span class="attr">render:</span>
+   <span class="attr">html:</span> <span class="literal">true</span>
+   <span class="attr">xhtmlOut:</span> <span class="literal">false</span>
+   <span class="attr">breaks:</span> <span class="literal">true</span>
+   <span class="attr">linkify:</span> <span class="literal">true</span>
+   <span class="attr">typographer:</span> <span class="literal">true</span>
+   <span class="attr">quotes:</span> <span class="string">'“”‘’'</span>
+ <span class="attr">plugins:</span>
+   <span class="bullet">-</span> <span class="string">markdown-it-abbr</span>
+   <span class="bullet">-</span> <span class="string">markdown-it-footnote</span>
+   <span class="bullet">-</span> <span class="string">markdown-it-ins</span>
+   <span class="bullet">-</span> <span class="string">markdown-it-sub</span>
+   <span class="bullet">-</span> <span class="string">markdown-it-sup</span>
+   <span class="bullet">-</span> <span class="string">markdown-it-deflist</span>
+   <span class="bullet">-</span> <span class="string">markdown-it-imsize</span>
+   <span class="bullet">-</span> <span class="string">markdown-it-mark</span>
+   <span class="bullet">-</span> <span class="string">markdown-it-regexp</span>
+   <span class="bullet">-</span> <span class="string">markdown-it-task-checkbox</span>
+   <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">markdown-it-container</span>
+     <span class="attr">options:</span> <span class="string">success</span>
+   <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">markdown-it-container</span>
+     <span class="attr">options:</span> <span class="string">info</span>
+   <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">markdown-it-container</span>
+     <span class="attr">options:</span> <span class="string">warning</span>
+   <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">markdown-it-container</span>
+     <span class="attr">options:</span> <span class="string">danger</span>
+   <span class="bullet">-</span> <span class="string">markdown-it-deflist</span>
+   <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">markdown-it-emoji</span>
+     <span class="attr">options:</span>
+       <span class="attr">shortcuts:</span> <span class="string">{}</span>
+ <span class="attr">anchors:</span>
+   <span class="attr">level:</span> <span class="number">2</span>
+   <span class="attr">collisionSuffix:</span> <span class="string">''</span>
+   <span class="attr">permalink:</span> <span class="literal">false</span>
+   <span class="attr">permalinkClass:</span> <span class="string">'header-anchor'</span>
+   <span class="attr">permalinkSide:</span> <span class="string">'left'</span>
+   <span class="attr">permalinkSymbol:</span> <span class="string">'¶'</span>
+   <span class="attr">case:</span> <span class="number">0</span>
+   <span class="attr">separator:</span> <span class="string">''</span></code></pre>
+</li>
+<li><p>Container的写法：</p>
+<pre><code>::: info
+here be info
+:::
+
+::: warning
+here be warning
+:::
+
+::: success
+here be success
+:::
+
+::: danger
+here be danger
+:::</code></pre></li>
+</ol>
+<p>::: danger</p>
+<p><strong>注意！</strong></p>
+<p>目前Container中某些md语法会被解析错误，请慎用。</p>
+<p>:::</p>
+<h2 id="自定样式"><a href="#自定样式" class="headerlink" title="自定样式"></a>自定样式</h2><p>::: danger</p>
+<p><strong>注意！</strong></p>
+<p>主题支持CDN服务，如果你需要对样式进行DIY，请确保关闭了CDN，否则修改的内容不会生效。</p>
+<p>:::</p>
+<h3 id="自定义字体"><a href="#自定义字体" class="headerlink" title="自定义字体"></a>自定义字体</h3><p>可以使用本地字体和任意CDN字体。CDN字体的使用方法：</p>
+<pre><code class="less"><span class="keyword">@font-face</span>{
+  <span class="attribute">font-family</span>: <span class="string">'Varela Round'</span>;
+  <span class="attribute">src</span>: url(<span class="string">https://cdn.jsdelivr.net/gh/xaoxuu/cdn-fonts@19.1.7/VarelaRound/VarelaRound-Regular.ttf</span>);
+  <span class="attribute">font-weight</span>: normal;
+  <span class="attribute">font-style</span>: normal;
+}
+<span class="variable">@fontfamily_base:</span> <span class="string">'Varela Round'</span>, ...</code></pre>
+<blockquote>
+<p>选择字体源： <btn><a href="https://www.jsdelivr.com/package/gh/xaoxuu/cdn-fonts" target="_blank" rel="noopener">jsdelivr</a><a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a></btn></p>
+<p>目前主题默认使用的字体源 <a href="https://www.jsdelivr.com/package/gh/xaoxuu/cdn-fonts" target="_blank" rel="noopener">@xaoxuu/cdn-fonts</a> 是我专门为存放字体建的一个仓库，由jsdelivr提供CDN服务，目前已经收录20余种精选字体。如果你想添加某个喜爱的字体，可以提交到这里： <a href="https://github.com/xaoxuu/cdn-fonts/" target="_blank" rel="noopener">https://github.com/xaoxuu/cdn-fonts/</a>。</p>
+</blockquote>
+<h3 id="调整字号"><a href="#调整字号" class="headerlink" title="调整字号"></a>调整字号</h3><pre><code class="less"><span class="comment">// base</span>
+<span class="variable">@fontsize_base:</span>   <span class="number">16px</span>;
+<span class="variable">@fontsize_small:</span>  <span class="variable">@fontsize_base</span> * <span class="number">0.875</span>;
+<span class="variable">@fontsize_footnote:</span>  <span class="variable">@fontsize_base</span> * <span class="number">0.7</span>;
+<span class="variable">@lineheight_base:</span> <span class="number">1.5</span>;
+<span class="comment">// title</span>
+<span class="variable">@fontsize_h1:</span> <span class="variable">@fontsize_base</span> * <span class="number">1.5</span>;
+<span class="variable">@fontsize_h2:</span> <span class="variable">@fontsize_base</span> * <span class="number">1.5</span>;
+<span class="variable">@fontsize_h3:</span> <span class="variable">@fontsize_base</span> * <span class="number">1.3</span>;
+<span class="variable">@fontsize_h4:</span> <span class="variable">@fontsize_base</span> * <span class="number">1.15</span>;
+<span class="variable">@fontsize_h5:</span> <span class="variable">@fontsize_base</span> * <span class="number">1</span>;
+<span class="variable">@fontsize_h6:</span> <span class="variable">@fontsize_small</span>;
+<span class="comment">// article</span>
+<span class="comment">// 文章列表中的标题</span>
+<span class="variable">@fontsize_list_title:</span> <span class="variable">@fontsize_base</span> * <span class="number">1.5</span>;
+<span class="comment">// 文章页的标题</span>
+<span class="variable">@fontsize_article_title:</span> <span class="variable">@fontsize_h2</span> * <span class="number">1.2</span>;
+<span class="variable">@fontsize_article_title_phone:</span> <span class="variable">@fontsize_h2</span>;</code></pre>
+<h3 id="调整布局"><a href="#调整布局" class="headerlink" title="调整布局"></a>调整布局</h3><p>文字对其方向：</p>
+<pre><code class="less"><span class="variable">@text_align_h1:</span> left;
+<span class="variable">@text_align_h2:</span> left;
+<span class="variable">@text_align_h3:</span> left;</code></pre>
+<p>间距、尺寸等：</p>
+<pre><code class="less"><span class="comment">// start: 间距 &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span>
+<span class="variable">@gap:</span> <span class="number">16px</span>;
+<span class="comment">// end: 间距 &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span>
+
+
+<span class="comment">// start: 布局尺寸 &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span>
+<span class="variable">@on_phone:</span>         <span class="number">580px</span>;
+<span class="variable">@on_pad:</span>           <span class="number">768px</span>;
+<span class="variable">@on_laptop:</span>        <span class="number">1024px</span>; <span class="comment">// 1024 + 285</span>
+<span class="variable">@on_desktop:</span>       <span class="number">1350px</span>;
+<span class="comment">// container</span>
+<span class="variable">@width_container:</span>  <span class="number">1080px</span>;
+<span class="variable">@on_modal_threshold:</span>  <span class="number">680px</span>;
+<span class="comment">// 侧边栏宽度</span>
+<span class="variable">@width_sidebar:</span> <span class="number">285px</span>;
+<span class="variable">@width_sidebar_m:</span> <span class="number">240px</span>;
+<span class="comment">// 搜索框的宽度，建议和侧边栏宽度保持一致</span>
+<span class="variable">@width_searchbar:</span> <span class="variable">@width_sidebar</span>;
+<span class="variable">@width_searchbar_m:</span> <span class="variable">@width_sidebar_m</span>;
+<span class="comment">// 搜索框的高度，建议不要超出导航栏的高度</span>
+<span class="variable">@height_searchbar:</span> <span class="number">40px</span>;
+<span class="variable">@searchbar_height_cover:</span> <span class="number">44px</span>;
+<span class="comment">// 一个cell的高度</span>
+<span class="variable">@height_cell:</span> <span class="number">36px</span>;
+<span class="comment">// end: 布局尺寸 &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span>
+
+
+<span class="comment">// start: 导航栏 &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span>
+<span class="comment">// 导航栏高度</span>
+<span class="variable">@height_navbar:</span> <span class="number">64px</span>;
+<span class="variable">@fontsize_logo:</span> <span class="variable">@fontsize_base</span> * <span class="number">1.2</span>;
+<span class="variable">@fontsize_header_switcher:</span> <span class="number">1.3em</span>;
+<span class="variable">@fontsize_header:</span> <span class="number">1em</span>;
+<span class="comment">// 定位条和页面加载的进度条的高度</span>
+<span class="variable">@loading_height:</span> <span class="number">2px</span>;
+<span class="comment">// end: 导航栏 &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span>
+
+
+<span class="comment">// start: 圆角 &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span>
+<span class="variable">@border_radius:</span> <span class="number">12px</span>; <span class="comment">// 圆角半径，可以根据心情随时调整风格</span>
+<span class="variable">@border_radius_line:</span> <span class="number">4px</span>; <span class="comment">// 线的宽度和滚动条的宽度</span>
+<span class="variable">@border_radius_code_block:</span> <span class="number">4px</span>; <span class="comment">// 引用、代码块的圆角</span>
+
+<span class="variable">@border_radius_searchbar:</span> <span class="number">8px</span>; <span class="comment">// 搜索框的圆角半径，可以根据心情随时调整风格</span>
+<span class="comment">// end: 圆角 &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span></code></pre>
+<h3 id="调整配色"><a href="#调整配色" class="headerlink" title="调整配色"></a>调整配色</h3><p>一个简单的例子：</p>
+<pre><code class="less"><span class="comment">// 网页背景颜色</span>
+<span class="variable">@theme_background:</span> <span class="number">#F4F4F4</span>;
+<span class="comment">// @theme_background: #454545; // 暗色主题</span>
+<span class="comment">// 主题色</span>
+<span class="variable">@theme_main:</span> <span class="number">#1BC3FB</span>;
+<span class="comment">// 卡片背景颜色</span>
+<span class="variable">@theme_cardbg:</span> white;
+<span class="comment">// @theme_cardbg: #555; // 暗色主题</span></code></pre>
+<p>如果你想更自由地定制颜色，可以修改这里的几项：</p>
+<pre><code class="less"><span class="comment">// 背景色 ----------------</span>
+<span class="comment">// 导航栏背景，默认和主题色保持一致</span>
+<span class="variable">@color_bg_navbar:</span> <span class="variable">@theme_main</span>;
+<span class="comment">// 代码的背景色</span>
+<span class="variable">@color_bg_code:</span> <span class="number">#FFF8F0</span>;
+<span class="comment">// 代码块的背景色</span>
+<span class="variable">@color_bg_code_block:</span> darken(<span class="variable">@theme_cardbg</span>, <span class="number">2%</span>);
+<span class="variable">@color_border_code_block:</span> <span class="number">#ddd</span>;
+<span class="comment">// 引用的颜色</span>
+<span class="variable">@color_bg_quote:</span> <span class="variable">@theme_main</span>;
+<span class="comment">// 选中部分文字的背景颜色</span>
+<span class="variable">@color_bg_selection:</span> fade(<span class="variable">@color_md_blue</span>, <span class="number">20%</span>);
+
+<span class="comment">// 文字颜色 ----------------</span>
+<span class="comment">// 标题文字颜色（h1/h2）</span>
+<span class="variable">@color_text_header:</span> darken(<span class="variable">@color_text_main</span>, <span class="number">5%</span>);
+<span class="comment">// 标题文字颜色（h3）</span>
+<span class="variable">@color_text_h3:</span> darken(<span class="variable">@theme_main</span>, <span class="number">5%</span>);
+<span class="comment">// 链接颜色</span>
+<span class="variable">@color_text_link:</span> <span class="variable">@theme_main</span>;
+<span class="comment">// 链接高亮颜色</span>
+<span class="variable">@color_text_highlight:</span> <span class="variable">@color_md_deep_orange</span>;
+<span class="comment">// 在主题色中显示的文本（一般为白或深灰）</span>
+<span class="variable">@color_text_in_header:</span> white;
+<span class="comment">// 正文文字颜色</span>
+<span class="variable">@color_text_main:</span> <span class="variable">@dark</span>;
+<span class="comment">// @color_text_main: white; // 暗色主题</span>
+<span class="comment">// 代码颜色</span>
+<span class="variable">@color_text_code:</span> <span class="number">#A55A00</span>;</code></pre>
+<h3 id="更多DIY玩法"><a href="#更多DIY玩法" class="headerlink" title="更多DIY玩法"></a>更多DIY玩法</h3><p>详见 <a href="https://www.itrhx.com" target="_blank" rel="noopener">@TRHX</a> 的这篇博客：<a href="https://www.itrhx.com/2018/08/27/A04-Hexo-blog-topic-personalization/" target="_blank" rel="noopener">《Hexo 博客主题个性化》</a></p>
+<p>内含卡片半透明、增加卡通人物、自定义鼠标样式、鼠标特效、烟花特效、彩色滚动字体、网站运行时间、动态浏览器标题、雪花飘落特效等多种详细教程。</p>
+<h2 id="使用CDN"><a href="#使用CDN" class="headerlink" title="使用CDN"></a>使用CDN</h2><p>对于大部分将博客deploy到GitHub的用户来说，直接加载本地资源速度比较慢，可以使用jsdelivr为开源项目提供的CDN服务。</p>
+<h3 id="开启方法"><a href="#开启方法" class="headerlink" title="开启方法"></a>开启方法</h3><pre><code class="yaml"><span class="attr">use_cdn:</span> <span class="literal">true</span></code></pre>
+<p>如果你需要对样式进行DIY，可以只关闭style文件的CDN。</p>
+<pre><code class="yaml"><span class="attr">info:</span>
+  <span class="attr">name:</span> <span class="string">Volantis</span>
+  <span class="attr">version:</span> <span class="number">1.6</span><span class="number">.2</span>
+  <span class="attr">docs:</span> <span class="string">https://volantis.js.org/</span>
+  <span class="attr">cdn:</span> <span class="comment"># 要使用CDN，请在根目录的config文件中写上 use_cdn: true</span>
+    <span class="attr">css:</span>
+      <span class="attr">style:</span> <span class="string">https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@20.2.33/css/style.css</span>
+    <span class="attr">js:</span>
+      <span class="attr">app:</span> <span class="string">https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@20.2.33/js/app.js</span>
+      <span class="attr">search:</span> <span class="string">https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@20.2.33/js/search.js</span>
+      <span class="attr">valine:</span> <span class="string">https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@20.2.33/js/valine.js</span></code></pre>
+<h3 id="自定义CDN"><a href="#自定义CDN" class="headerlink" title="自定义CDN"></a>自定义CDN</h3><p>如果你把对应的文件上传到自己的CDN服务器，可以把对应的链接改为自己的CDN链接。</p>
+<h2 id="评论系统"><a href="#评论系统" class="headerlink" title="评论系统"></a>评论系统</h2><h3 id="Disqus"><a href="#Disqus" class="headerlink" title="Disqus"></a>Disqus</h3><p>官网： <a href="https://disqus.com/" target="_blank" rel="noopener">https://disqus.com/</a></p>
+<pre><code class="yaml"><span class="comment"># disqus评论</span>
+<span class="attr">disqus_shortname:</span> <span class="comment">#你的disqus的shortname#</span></code></pre>
+<h3 id="Gitalk"><a href="#Gitalk" class="headerlink" title="Gitalk"></a>Gitalk</h3><p>官网： <a href="https://github.com/gitalk/gitalk" target="_blank" rel="noopener">https://github.com/gitalk/gitalk</a></p>
+<pre><code class="yaml"><span class="attr">gitalk:</span> <span class="string">要使用哪个请复制到根目录配置文件！</span>
+  <span class="attr">clientID:</span> <span class="string">你的clientID</span>
+  <span class="attr">clientSecret:</span> <span class="string">你的clientSecret</span>
+  <span class="attr">repo:</span> <span class="string">你的repo名</span>
+  <span class="attr">owner:</span> <span class="string">你的GitHub名</span>
+  <span class="attr">admin:</span> <span class="string">[]</span> <span class="string">至少填写你的GitHub名</span></code></pre>
+<p>clientID和clientSecret的获取方法可自行搜索教程，这里仅简单描述一下步骤：</p>
+<ol>
+<li>点击 GitHub -&gt; Settings <code>https://github.com/settings/profile</code></li>
+<li>点击 Developer settings <code>https://github.com/settings/developers</code></li>
+<li>点击 New OAuth App <code>https://github.com/settings/applications/new</code></li>
+<li>填写信息：</li>
+</ol>
+<p><strong>Application name</strong> 随便填，我的是：<code>xaoxuu.com</code><br><strong>Homepage URL</strong> 和 <strong>Authorization callback URL</strong> 都写你的网址，我的是：<code>https://xaoxuu.com</code></p>
+<p><strong>可以通过设置 <code>gitalk.id</code> 实现多个页面共用一个评论框。</strong></p>
+<pre><code class="yaml"><span class="meta">---</span>
+<span class="attr">gitalk:</span>
+  <span class="attr">id:</span> <span class="string">/wiki/volantis/</span>
+<span class="meta">---</span></code></pre>
+<h3 id="Valine"><a href="#Valine" class="headerlink" title="Valine"></a>Valine</h3><p>官网： <a href="https://valine.js.org" target="_blank" rel="noopener">https://valine.js.org</a></p>
+<pre><code class="yaml"><span class="attr">leancloud:</span>
+  <span class="attr">app_id:</span> <span class="string">你的appId</span>
+  <span class="attr">app_key:</span> <span class="string">你的appKey</span></code></pre>
+<pre><code class="yaml"><span class="attr">valine:</span>
+  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment"># 如果你想用Valine评论系统，请设置enable为true</span>
+  <span class="attr">volantis:</span> <span class="literal">true</span> <span class="comment"># 是否启用volantis版本（禁止匿名，增加若干贴吧、QQ表情）</span>
+  <span class="comment"># 还需要在根目录配置文件中添加下面这三行内容</span>
+  <span class="comment"># leancloud:</span>
+  <span class="comment">#   app_id: 你的appId</span>
+  <span class="comment">#   app_key: 你的appKey</span>
+  <span class="attr">guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment">#valine comment header info</span>
+  <span class="attr">placeholder:</span> <span class="string">快来评论吧~</span> <span class="comment"># valine comment input placeholder(like: Please leave your footprints )</span>
+  <span class="attr">avatar:</span> <span class="string">mp</span> <span class="comment"># gravatar style https://valine.js.org/avatar</span>
+  <span class="attr">pageSize:</span> <span class="number">20</span> <span class="comment"># comment list page size</span>
+  <span class="attr">verify:</span> <span class="literal">false</span> <span class="comment"># valine verify code (true/false)</span>
+  <span class="attr">notify:</span> <span class="literal">false</span> <span class="comment"># valine mail notify (true/false)</span>
+  <span class="attr">lang:</span> <span class="string">zh-cn</span>
+  <span class="attr">highlight:</span> <span class="literal">false</span></code></pre>
+<p>其中，<code>placeholder</code> 支持在Front-matter中设置。</p>
+<pre><code class="yaml"><span class="meta">---</span>
+<span class="attr">valine:</span>
+  <span class="attr">placeholder:</span> <span class="string">你觉得xxx怎么样呢？</span>
+<span class="meta">---</span></code></pre>
+<p>也可以通过设置 <code>valine.path</code> 实现多个页面共用一个评论框。</p>
+<pre><code class="yaml"><span class="meta">---</span>
+<span class="attr">valine:</span>
+  <span class="attr">path:</span> <span class="string">/wiki/volantis/</span>
+<span class="meta">---</span></code></pre>
+<h3 id="Livere"><a href="#Livere" class="headerlink" title="Livere"></a>Livere</h3><p>官网： <a href="http://www.laibili.com.cn/" target="_blank" rel="noopener">http://www.laibili.com.cn/</a></p>
+<pre><code class="yaml"><span class="comment"># 来必力评论</span>
+<span class="attr">livere_uid:</span> <span class="comment">#你的livere的uid</span></code></pre>
+<p>在这里查看你的uid：<code>https://livere.com/insight/myCode</code>，在【代码管理 -&gt; 一般网站】中找到如下这段代码，其中 <code>data-uid</code> 中的内容就是你的 <code>livere_uid</code>。</p>
+<pre><code class="html"><span class="comment">&lt;!-- 来必力City版安装代码 --&gt;</span>
+<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"lv-container"</span> <span class="attr">data-id</span>=<span class="string">"city"</span> <span class="attr">data-uid</span>=<span class="string">"你的livere的uid"</span>&gt;</span>
+...</code></pre>
+<h2 id="安装「相关文章」插件"><a href="#安装「相关文章」插件" class="headerlink" title="安装「相关文章」插件"></a>安装「相关文章」插件</h2><ol>
+<li>安装插件</li>
+</ol>
+<pre><code class="sh">npm i S hexo-related-popular-posts</code></pre>
+<ol start="2">
+<li>在需要显示的位置添加<code>related_posts</code></li>
+</ol>
+<p>例如放在侧边栏：</p>
+<pre><code class="yaml"><span class="attr">layout:</span>
+  <span class="attr">on_page:</span>
+    <span class="attr">sidebar:</span> <span class="string">[related_posts]</span></code></pre>
+<p>插件的自定义配置方法：<a href="https://github.com/tea3/hexo-related-popular-posts" target="_blank" rel="noopener">https://github.com/tea3/hexo-related-popular-posts</a></p>
+<h2 id="分析与统计"><a href="#分析与统计" class="headerlink" title="分析与统计"></a>分析与统计</h2><p>默认支持并且开启 <a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener">不蒜子</a> 的访问统计，可以自行添加百度统计和Google Analytics。</p>
+<h3 id="字数和阅读时长"><a href="#字数和阅读时长" class="headerlink" title="字数和阅读时长"></a>字数和阅读时长</h3><ol>
+<li>安装以下插件：<pre><code>npm i --save hexo-wordcount</code></pre></li>
+<li>修改配置文件，将 <code>wordcount</code> 插件打开<pre><code class="yaml"><span class="attr">plugins:</span>
+<span class="string">...</span>
+<span class="comment"># 文章字数统计、阅读时长，开启需要安装插件: npm i --save hexo-wordcount</span>
+<span class="attr">wordcount:</span> <span class="literal">true</span></code></pre>
+</li>
+<li>然后修改配置文件，将 <code>wordcount</code> 写入需要显示的meta位置：<pre><code class="yaml"><span class="comment"># 布局</span>
+<span class="attr">layout:</span>
+<span class="attr">on_list:</span>
+ <span class="attr">meta:</span> <span class="string">[...,</span> <span class="string">wordcount,</span> <span class="string">...]</span>
+<span class="attr">on_page:</span>
+ <span class="attr">meta:</span>
+   <span class="attr">header:</span> <span class="string">[...,</span> <span class="string">wordcount,</span> <span class="string">...]</span>
+   <span class="attr">footer:</span> <span class="string">[...,</span> <span class="string">wordcount,</span> <span class="string">...]</span></code></pre>
+</li>
+</ol>
+<h3 id="百度统计"><a href="#百度统计" class="headerlink" title="百度统计"></a>百度统计</h3><pre><code class="yaml"><span class="attr">baidu_analytics_key:</span> <span class="string">百度统计的key</span></code></pre>
+<h3 id="Google-Analytics"><a href="#Google-Analytics" class="headerlink" title="Google Analytics"></a>Google Analytics</h3><pre><code class="yaml"><span class="attr">google_analytics_key:</span> <span class="string">Google</span> <span class="string">Analytics</span> <span class="string">Key</span></code></pre>
+<h3 id="CNZZ统计"><a href="#CNZZ统计" class="headerlink" title="CNZZ统计"></a>CNZZ统计</h3><p>请参考ZYMIN网友的这篇教程：<a href="https://zymin.cn/arcticle/hexo+ejs+material.html" target="_blank" rel="noopener">《hexo+ejs+material x 添加CNZZ统计代码》</a></p>
+<h3 id="网站运行时间等"><a href="#网站运行时间等" class="headerlink" title="网站运行时间等"></a>网站运行时间等</h3><p>请参考TRHX网友的这篇教程：<a href="https://itrhx.com/2018/08/27/A04-Hexo-blog-topic-personalization/" target="_blank" rel="noopener">《Hexo 博客主题个性化》</a></p>
